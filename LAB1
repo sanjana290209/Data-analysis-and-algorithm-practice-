@@ -1,0 +1,94 @@
+
+#1
+a =[1,1,0,0,2,2,0,0,1,0,2,0,1]
+p = []
+n=len(a)
+counter = 0
+for i in range(n):
+    if i == 0 :
+        p.append(i)
+    else:
+        counter += 1
+    for i in range(n):
+        if i==1 :
+                p.append(i)
+            else:
+                counter += 1
+                for i in range(n):
+                    if i==2 :
+                        p.append(i)
+print(p)
+
+#2
+def is_balanced(expression):
+    b= []  # Create an empty stack to keep track of opening parentheses
+
+    # Define a dictionary to map closing parentheses to their corresponding opening parentheses
+    parentheses_map = {')': '(', '}': '{', ']': '['}
+
+    # Iterate through each character in the expression
+    for char in expression:
+        if char in '([{':
+            # If it's an opening parenthesis, push it onto the stack
+            b.append(char)
+        elif char in ')]}':
+            # If it's a closing parenthesis, check if the stack is empty
+            if not b:
+                return False  # Unbalanced: no matching opening parenthesis found
+            # Pop the top element from the stack and compare it to the current closing parenthesis
+            top = b.pop()
+            if top != parentheses_map[char]:
+                return False  # Unbalanced: mismatched opening and closing parentheses
+
+    # After iterating through the entire expression, check if the stack is empty
+    return not b # If the stack is empty, it's balanced; otherwise, it's unbalanced
+
+
+print(is_balanced("()"))  # True
+print(is_balanced("()[]{}"))  # True
+print(is_balanced("(]"))  # False
+print(is_balanced("([)]"))  # False
+print(is_balanced("{[()]}"))  # True
+
+#3
+def balance_braces(s):
+    # create a stack to store the opening braces
+    stack = []
+    # iterate over the string
+    for c in s:
+        # if the character is an opening brace, push it onto the stack
+        if c in '{[([])}]':
+            stack.append(c)
+        # if the character is a closing brace, check if it matches the top of the stack
+        else:
+            if not stack or c != '{[([])}]'.index(stack.pop()):
+                return False
+    # if the stack is empty, the braces are balanced
+    return not stack
+class Node:
+    def _init_(self,root):
+        self.left=None
+        self.right=None
+        self.root=root
+root=Node(7)
+root.left=Node(6)
+root.right=Node(10)
+root.left.right=Node(5)
+root.left.left=Node(4)
+root.right.left=Node(9)
+root.right.right=Node(12)
+
+def search(root,key):
+    if root > key:
+        return search(root.left,key)
+    elif root < key :
+        return search(root.right,key)
+    return key
+
+
+
+def recursive(root,key):
+    if root.left ==root.right:
+        return true
+    else :
+        return recursive(next.root)
