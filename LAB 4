@@ -1,0 +1,150 @@
+#lab 4
+#1    i<j then swap
+# | 8 | 4 | 2 | 1 |
+
+a=[8,4,2,1]
+for i in range (len(a)):
+    for j in range(i + 1, len(a)):
+        if a[i] > a[j]:
+            swapped = True
+            temp = a[i]
+            a[i] = a[j]
+            a[j] = temp
+        else:
+            swapped = False
+
+    if swapped == False:
+        break
+
+print(a)
+
+def invercount(array):
+  count = 0
+  for i in range(len(array)):
+    for j in range(i + 1, len(array)):
+      if array[i] > array[j]:
+        count += 1
+  return count
+for i in range(len a):
+    for j in range(i+1,len a)
+    swapped== true
+    print (i,j)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#2     check if identical
+class Node:
+  def __init__(self, data):
+    self.data = data
+    self.children = []
+
+def is_identical(t1, t2):
+  if t1 is None and t2 is None:
+    return True
+  elif t1 is None or t2 is None:
+    return False
+  elif t1.data != t2.data:
+    return False
+  else:
+    return is_identical(t1.children, t2.children)
+
+t1 = Node(1)
+t1.children.append(Node(2))
+t1.children.append(Node(3))
+t1.children[0].children.append(Node(2))
+
+t2 = Node(1)
+t2.children.append(Node(2))
+t2.children.append(Node(3))
+t2.children[0].children.append(Node(2))
+
+print(is_identical(t1, t2))
+
+
+class Node:
+    def _init_(self,Data):
+        self.left=None
+        self.right=None
+        self.Data=Data
+
+
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+
+
+def search(root,key):
+     if root==key:
+          return root
+     elif root>key:
+          return (root.left,key)
+     elif root<key:
+          return (root.right,key)
+
+
+
+
+
+
+
+
+#3    the sky is blue
+#mix up the even positioned words
+
+def mix_up_letters(word, random=None):
+  letters = list(word)
+  for i in range(len(letters) // 2):
+    j = random.randint(i, len(letters) - 1)
+    letters[i], letters[j] = letters[j], letters[i]
+  return "".join(letters)
+
+def mix_up_even_positioned_words(sentence):
+  words = sentence.split()
+  for i in range(len(words)):
+    if i % 2 == 1:
+      words[i] = mix_up_letters(words[i])
+  return " ".join(words)
+
+sentence = "the sky is blue"
+
+mixed_up_sentence = mix_up_even_positioned_words(sentence)
+
+print(mixed_up_sentence)
+def mix_up_letters(word, random=None):
+  letters = list(word)
+  for i in range(len(letters) // 2):
+    j = random.randint(i, len(letters) - 1)
+    letters[i], letters[j] = letters[j], letters[i]
+  return "".join(letters)
+def mix_up_even_positioned_words(sentence):
+  words = sentence.split()
+  for i in range(len(words)):
+    if i % 2 == 1:
+      words[i] = mix_up_letters(words[i])
+  return " ".join(words)
+sentence = "the sky is blue"
+mixed_up_sentence = mix_up_even_positioned_words(sentence)
+print(mixed_up_sentence)
+
+
+
+
+
+
+
+
+
