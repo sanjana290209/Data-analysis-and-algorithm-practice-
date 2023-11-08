@@ -1,0 +1,52 @@
+import heapq
+
+def shortest_time_to_vaccine(n, m, portals, unsafe):
+    # Create a graph of the portals
+    graph = {}
+    for portal in portals:
+        a, b, c = portal
+        if a not in graph:
+            graph[a] = []
+        graph[a].append((b, c))
+        if b not in graph:
+            graph[b] = []
+        graph[b].append((a, c))
+
+    # Create a priority queue to store the nodes to visit
+    pq = [(0, 1)]  # (time, node)
+
+    # Keep track of the visited nodes
+    visited = set()
+
+    # While there are nodes to visit
+    while pq:
+        # Get the next node to visit
+        time, node = heapq.heappop(pq)
+
+        # If the node has already been visited, skip it
+        if node in visited:
+            continue
+
+        # Mark the node as visited
+        visited.add(node)
+
+        # If the node is the destination, return the time
+        if node == n:
+            return time
+
+        # Add the node's neighbors to the priority queue
+        for neighbor, cost in graph[node]:
+            if neighbor not in visited:
+                heapq.heappush(pq, (time + cost, neighbor))
+
+    # If the destination node was not found, return -1
+    return -1
+
+# Read input
+n, m = map(int, input().split())
+portals = [list(map(int, input().split())) for _ in range(m)]
+unsafe = [list(map(int, input().split())) for _ in range(n)]
+
+# Call the function and print the result
+result = shortest_time_to_vaccine(n, m, portals, unsafe)
+print(result)
