@@ -1,0 +1,38 @@
+import heapq
+
+def shortest_time_to_vaccine(n, m, portals, unsafe):
+    graph = {}
+    for portal in portals:
+        a, b, c = portal
+        if a not in graph:
+            graph[a] = []
+        graph[a].append((b, c))
+        if b not in graph:
+            graph[b] = []
+        graph[b].append((a, c))
+
+    pq = [(0, 1)]  # (time, node)
+
+    visited = set()
+
+    
+    while pq:
+        time, node = heapq.heappop(pq)
+
+        if node in visited:
+            continue
+        visited.add(node)
+
+        if node == n:
+            return time
+
+        for neighbor, cost in graph[node]:
+            if neighbor not in visited:
+                heapq.heappush(pq, (time + cost, neighbor))
+n, m = map(int, input().split())
+portals = [list(map(int, input().split())) for _ in range(m)]
+unsafe = [list(map(int, input().split())) for _ in range(n)]
+
+result = shortest_time_to_vaccine(n, m, portals, unsafe)
+print(result)
+
